@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>My Favorite Chaos · Día de la Mujer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: #0b0c10;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            margin: 0;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(115, 0, 30, 0.15) 0%, transparent 30%),
+                radial-gradient(circle at 90% 70%, rgba(40, 20, 60, 0.3) 0%, transparent 40%),
+                repeating-linear-gradient(45deg, rgba(30, 15, 25, 0.3) 0px, rgba(30, 15, 25, 0.3) 2px, transparent 2px, transparent 6px);
+        }
+
+        /* contenedor principal — mobile first */
+        .card {
+            max-width: 380px;
+            width: 100%;
+            background: #1e1428;
+            background: linear-gradient(145deg, #1a0f1f 0%, #2a1a2a 100%);
+            border: 2px solid #6a3e4c;
+            border-radius: 32px;
+            padding: 24px 20px 32px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 0 2px #4a2b38 inset, 0 0 15px #a55d6e80;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+
+        /* sangre / terciopelo — detalles góticos */
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #9e2b3a, #c9859a, #9e2b3a);
+            box-shadow: 0 0 12px #dba5b5;
+        }
+
+        .card::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: radial-gradient(ellipse at 50% 100%, #4a2634 0%, transparent 80%);
+            pointer-events: none;
+        }
+
+        /* elementos decorativos vampíricos */
+        .bat-decoration {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            opacity: 0.25;
+            font-size: 28px;
+            transform: rotate(5deg);
+            color: #5f3b4a;
+            text-shadow: 0 0 6px #b8768b;
+            z-index: 2;
+        }
+
+        .bat-decoration.left {
+            left: 16px;
+            right: auto;
+            transform: rotate(-10deg) scaleX(-1);
+        }
+
+        /* encabezado */
+        .header {
+            text-align: center;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .alias {
+            font-size: 1.9rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #f5d7e0;
+            text-shadow: 0 0 10px #d94f6f, 0 2px 0 #3d1e2a;
+            font-family: 'Cinzel', 'Georgia', serif;
+            word-break: break-word;
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #dba5b5;
+            font-size: 1.1rem;
+            border-bottom: 2px solid #7f4e5d;
+            border-top: 2px solid #7f4e5d;
+            display: inline-block;
+            padding: 6px 18px;
+            letter-spacing: 1.5px;
+            font-style: italic;
+            text-transform: uppercase;
+            background: #1f0f17b3;
+            border-radius: 40px;
+            backdrop-filter: blur(2px);
+            box-shadow: 0 2px 10px #380e1e;
+        }
+
+        .day-badge {
+            background: #2c1622;
+            color: #f3b3c1;
+            border-radius: 30px;
+            padding: 6px 16px;
+            margin-top: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            border: 1px solid #b45f73;
+            box-shadow: 0 0 10px #ff97b0;
+        }
+
+        .day-badge span {
+            font-size: 1.2rem;
+        }
+
+        /* foto simbólica (silueta vampírica) */
+        .portrait {
+            width: 140px;
+            height: 140px;
+            margin: 16px auto 18px;
+            border-radius: 50%;
+            background: #200e15;
+            border: 4px solid #ad5d74;
+            box-shadow: 0 0 30px #d97890, 0 0 0 2px #511f2f inset;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 5;
+        }
+
+        .portrait-inner {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #3e2535, #16070f);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4.2rem;
+            filter: drop-shadow(0 0 6px #ffb6c1);
+            color: #f5cdd9;
+            border: 2px dashed #bc7f93;
+        }
+
+        /* sección de texto principal */
+        .dedication {
+            background: rgba(10, 5, 8, 0.7);
+            backdrop-filter: blur(4px);
+            border: 1px solid #9a5d70;
+            border-radius: 48px 16px 48px 16px;
+            padding: 22px 18px;
+            margin: 24px 0;
+            box-shadow: 0 0 20px #2f1a24 inset, 0 6px 10px #00000055;
+            color: #f1dfe3;
+        }
+
+        .dedication p {
+            margin-bottom: 16px;
+            line-height: 1.6;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .dedication p:last-child {
+            margin-bottom: 0;
+        }
+
+        .vampire-quote {
+            font-size: 1.3rem;
+            font-family: 'Cinzel', serif;
+            color: #f3b6cb;
+            text-align: center;
+            border-left: 4px solid #b04562;
+            padding-left: 12px;
+            margin: 20px 0 14px;
+            font-style: italic;
+            text-shadow: 0 0 3px #fff;
+        }
+
+        .destacar {
+            color: #f7cedb;
+            font-weight: 600;
+            background: linear-gradient(90deg, transparent, #7f3e5350, transparent);
+            padding: 0 6px;
+        }
+
+        .rosas {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 25px 0 20px;
+            font-size: 2rem;
+            filter: drop-shadow(0 0 8px #e7a5b5);
+        }
+
+        /* lista de cualidades (con estilo místico) */
+        .qualities {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin: 22px 0 12px;
+        }
+
+        .quality-item {
+            background: #1d0d13e0;
+            border: 1.5px solid #a06b7c;
+            padding: 8px 14px;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            color: #f3cfdb;
+            box-shadow: 0 2px 10px #590d27;
+            backdrop-filter: blur(2px);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .quality-item span {
+            font-size: 1.2rem;
+        }
+
+        /* mensaje especial 8M */
+        .women-day {
+            background: #2b1422;
+            border: 2px solid #c07289;
+            border-radius: 28px;
+            padding: 22px 18px;
+            margin-top: 24px;
+            margin-bottom: 18px;
+            text-align: center;
+            box-shadow: 0 0 30px #d38ba3;
+            position: relative;
+        }
+
+        .women-day h3 {
+            color: #ffdae5;
+            font-size: 1.5rem;
+            font-family: 'Cinzel', serif;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .women-day .big-number {
+            font-size: 3.2rem;
+            line-height: 1;
+            color: #e6a0b5;
+            text-shadow: 0 0 15px crimson;
+            margin: 5px 0;
+        }
+
+        .women-day p {
+            color: #f1ced9;
+            font-size: 1.05rem;
+            font-weight: 500;
+            border-top: 1px solid #b05771;
+            padding-top: 12px;
+            margin-top: 6px;
+        }
+
+        .rose-icon {
+            font-size: 2.2rem;
+            filter: drop-shadow(0 0 10px hotpink);
+        }
+
+        /* firma */
+        .signature {
+            text-align: right;
+            font-size: 1.2rem;
+            color: #d1a0af;
+            border-top: 2px solid #673d4b;
+            padding-top: 16px;
+            margin-top: 28px;
+            font-style: italic;
+            font-family: 'Cinzel', serif;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .signature span {
+            font-size: 2rem;
+            opacity: 0.9;
+        }
+
+        /* enlace imaginario a Mystic Falls */
+        .mystic-note {
+            color: #987582;
+            font-size: 0.8rem;
+            text-align: center;
+            margin-top: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        /* scroll estilizado (opcional, solo para móvil) */
+        ::-webkit-scrollbar {
+            width: 0;
+            background: transparent;
+        }
+    </style>
+</head>
+<body>
+    <!-- toda la página es la "carta de vampiro" para My Favorite Chaos -->
+    <div class="card">
+        <!-- murciélagos decorativos -->
+        <div class="bat-decoration left">🦇</div>
+        <div class="bat-decoration">🦇</div>
+
+        <!-- encabezado con apodo -->
+        <div class="header">
+            <div class="alias">🖤 My Favorite Chaos 🖤</div>
+            <div class="subtitle">Eternal & Enchanting</div>
+            <!-- pequeño detalle 8M -->
+            <div class="day-badge">
+                <span>🌹</span> 8 de marzo · Día de la Mujer <span>🌹</span>
+            </div>
+        </div>
+
+        <!-- retrato simbólico (una especie de "vampire queen") -->
+        <div class="portrait">
+            <div class="portrait-inner">🧛‍♀️🌙</div>
+        </div>
+
+        <!-- dedicatoria principal (siempre usando "My Favorite Chaos") -->
+        <div class="dedication">
+            <p>
+                <span class="destacar">«Mi querida My Favorite Chaos»</span>,<br>
+                en las noches de Mystic Falls, entre sombras y destellos, 
+                brilla una luz única: <strong class="destacar">la tuya</strong>.
+            </p>
+            <p>
+                Eres ese hermoso caos que ilumina hasta el rincón más oscuro, 
+                con una fuerza digna de una vampira original, pero con un corazón 
+                más puro que el de cualquier criatura sobrenatural.
+            </p>
+            <div class="vampire-quote">
+                "siempre serás mi persona favorita, mi caos favorito"
+            </div>
+        </div>
+
+        <!-- lista tipo "cualidades de una verdadera reina vampírica" -->
+        <div class="qualities">
+            <div class="quality-item"><span>🩸</span> Lealtad eterna</div>
+            <div class="quality-item"><span>🥀</span> Magia en la mirada</div>
+            <div class="quality-item"><span>🦷</span> Sonrisa radiante</div>
+            <div class="quality-item"><span>🌕</span> Fuerza lunar</div>
+            <div class="quality-item"><span>🌹</span> Amiga fiel</div>
+            <div class="quality-item"><span>🦇</span> Libre como el viento</div>
+        </div>
+
+        <!-- rosas rojas (símbolo día de la mujer + toque gótico) -->
+        <div class="rosas">
+            <span>🌹</span> <span>🥀</span> <span>🌹</span> <span>🥀</span> <span>🌹</span>
+        </div>
+
+        <!-- bloque central: Día de la mujer + elogio especial -->
+        <div class="women-day">
+            <h3>8 de marzo</h3>
+            <div class="big-number">🌸 DÍA DE LA MUJER 🌸</div>
+            <p>
+                <strong>My Favorite Chaos</strong>, hoy celebramos a todas las mujeres 
+                extraordinarias, y tú eres el ejemplo perfecto de <span class="destacar">fortaleza, dulzura y lealtad</span>. 
+                Eres una mujer increíblemente <strong>linda</strong>, con una luz que ni el más antiguo vampiro podría igualar. 
+                Gracias por ser esa amiga que escucha, que sostiene, que ilumina. 
+                <br><br>
+                <span style="font-size: 1.3rem;">🖤🌹</span> Porque mereces todos los elogios del mundo, hoy y siempre. 
+                Eres hermosa por dentro y por fuera, una mujer valiosa, única.
+            </p>
+        </div>
+
+        <!-- otro detalle (sello místico) -->
+        <div style="display: flex; justify-content: center; gap: 6px; margin: 8px 0 6px; color: #ac7b8b; font-size: 0.9rem;">
+            <span>⚜️</span> Eres puro amor, caos y bondad <span>⚜️</span>
+        </div>
+
+        <!-- firma con estilo vampírico (nunca se menciona "Livia", solo el apodo) -->
+        <div class="signature">
+            <span>🧛</span>
+            <span>para <i>My Favorite Chaos</i>, con todo mi cariño eterno</span>
+            <span>🦇</span>
+        </div>
+
+        <!-- pequeño pie: referencia a The Vampire Diaries -->
+        <div class="mystic-note">
+            “siempre fuiste, eres y serás mi persona favorita en Mystic Falls y más allá”<br>
+            🖤 8M · Día de la Mujer · dedicado a la mujer más linda: My Favorite Chaos 🖤
+        </div>
+    </div>
+</body>
+</html>
